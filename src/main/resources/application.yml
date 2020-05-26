@@ -1,0 +1,21 @@
+NEXUS_GRADLE_PLUGINS_URL: https://nexus.ru/repository/maven/
+NEXUS_MAVEN_CENTRAL_URL: https://nexus.ru/repository/maven/
+NEXUS_RELEASE_URL: https://nexus.ru/repository/maven-lib/
+NEXUS_SNAPSHOT_URL: https://nexus.ru/repository/maven-snapshots/
+NEXUS_USER: user
+NEXUS_PASSWORD: pass
+
+example:
+  services:
+    database1: schema1  #database name: schema
+    database2: schema2
+
+url_test_stand: jdbc:postgresql://localhost:5432/{0}
+url_prom: jdbc:postgresql://localhost:5433/{0}
+
+driver: org.postgresql.Driver
+
+promUser: user
+promPassword: pass
+testStandUser: user
+testStandPassword: pass

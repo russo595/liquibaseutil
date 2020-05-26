@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" th:object="${metaData}">
+    <table>
+        <tr>
+            <td>Сервис для сравнения:</td>
+            <td>
+                <select th:field="*{artifactId}">
+                    <!--                    <option value="">&#45;&#45;</option>-->
+                    <option th:each="artifactId : ${apps}" th:value="${artifactId}" th:text="${artifactId}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Спсиок версий</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<form th:object="${metaData}">
+    <table>
+        <thead>
+        <tr th:text="*{artifactId != null ? 'Версии сервиса ' + artifactId + ' для сравнения' : 'Версии сервиса для сравнения'}"></tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(versionList)}">
+            <td colspan="2">? ? ? ? ?</td>
+        </tr>
+        <tr><!--th:each="version : *{versionList}"-->
+            <!--<td><span th:text="${version}">Version</span></td>-->
+            <td>
+                <select><!--th:field="*{artifactId}"-->
+                    <option th:each="version : ${versionList}" th:value="${version}" th:text="${version}"></option>
+                </select>
+            </td>
+            <td>
+                <select><!--th:field="*{artifactId}"-->
+                    <option th:each="version : ${versionList}" th:value="${version}" th:text="${version}"></option>
+                </select>
+            </td>
+            <td th:if="${!#lists.isEmpty(versionList)}">
+                <button type="submit">Сравнить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

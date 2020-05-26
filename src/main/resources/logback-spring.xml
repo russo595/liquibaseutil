@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <jmxConfigurator />
+    <property name="LOGS_PATH" value="logs"/>
+    <property name="LOGS_FORMAT" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n"/>
+
+    <springProperty scope="context" name="app_name" source="spring.application.name" defaultValue="undefined"/>
+    <springProperty scope="context" name="app_version" source="spring.application.version" defaultValue="undefined"/>
+    <springProperty scope="context" name="app_instance" source="spring.cloud.consul.discovery.instanceId" defaultValue="undefined"/>
+    <springProperty scope="local" name="LOGSTASH_HOST" source="logging.logstash.host"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOGS_FORMAT}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.hamster" level="DEBUG" />
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
